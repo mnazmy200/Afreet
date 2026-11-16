@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>عفريت | كل أدواتك في مكان واحد</title>
+<meta name="description" content="عفريت: اعرف مين بيتصل بيك قبل ما ترد، وأكتر من 40 أداة في تطبيق واحد: QR، مواعيد الصلاة، حاسبات، سكانر وأكتر.">
+<meta property="og:title" content="عفريت يخلصهالك">
+<meta property="og:description" content="اعرف مين بيرن عليك قبل ما ترد + أكتر من 40 أداة في تطبيق واحد.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#FFEE9E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  /* ألوان هوية عفريت (من التطبيق) */
+  :root{
+    --gold1:#FFE45C; --gold2:#FFC61A; --goldInk:#0F4C2A;
+    --flame:#E5383B; --cream:#FFF8DC; --yellowSoft:#FFEE9E;
+    --green:#1B7A3E; --deep:#0F5B34;
+    --ink:#1d2b22;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+  body{
+    font-family:'Cairo',system-ui,sans-serif;
+    color:var(--ink);
+    background:linear-gradient(180deg,var(--yellowSoft) 0,var(--cream) 35%,var(--cream) 100%);
+    min-height:100vh;
+    overflow-x:hidden;
+    padding-bottom:96px;
+  }
+  a{color:inherit;text-decoration:none}
+  .page{max-width:520px;margin:0 auto;padding:12px 16px 0;position:relative}
+
+  /* ---------- Header ---------- */
+  .header{position:relative;text-align:center;padding:26px 0 8px}
+  .header::before{
+    content:"";position:absolute;inset:-12px -30px 0;z-index:0;
+    background:
+      radial-gradient(120px 90px at 92% 30%,rgba(27,122,62,.14),transparent 70%),
+      radial-gradient(110px 80px at 6% 18%,rgba(27,122,62,.12),transparent 70%),
+      radial-gradient(260px 120px at 50% 105%,rgba(255,198,26,.55),transparent 70%);
+  }
+  .header > *{position:relative;z-index:1}
+  .mascot{
+    width:132px;height:150px;margin:0 auto 4px;display:block;object-fit:contain;
+    animation:float 3.2s ease-in-out infinite;
+    filter:drop-shadow(0 12px 10px rgba(0,0,0,.18));
+  }
+  @keyframes float{0%,100%{transform:translateY(0) rotate(-1.5deg)}50%{transform:translateY(-9px) rotate(1.5deg)}}
+  h1{font-size:62px;line-height:1.1;font-weight:900;color:var(--deep)}
+  .underline{width:130px;height:6px;border-radius:6px;background:var(--flame);margin:2px auto 10px;transform:rotate(-2deg)}
+  .welcome{font-size:24px;font-weight:900;color:var(--deep)}
+  .sub{font-size:15px;font-weight:700;margin-top:2px}
+  .gold-line{width:100px;height:3px;border-radius:3px;background:var(--gold2);margin:8px auto 0}
+
+  /* ---------- أزرار 3D ---------- */
+  .btn3d{
+    display:inline-flex;align-items:center;justify-content:center;gap:10px;
+    font-family:inherit;font-weight:900;font-size:20px;
+    color:#fff;border-radius:24px;padding:15px 30px;cursor:pointer;border:0;
+    background:linear-gradient(180deg,#FF6B5E,var(--flame));
+    box-shadow:0 6px 0 #A8222A,0 14px 22px rgba(0,0,0,.22);
+    transition:transform .09s, box-shadow .09s;
+    position:relative;
+  }
+  .btn3d:active{transform:translateY(5px);box-shadow:0 1px 0 #A8222A,0 4px 8px rgba(0,0,0,.2)}
+  .btn3d.gold{
+    color:var(--goldInk);
+    background:linear-gradient(180deg,var(--gold1),var(--gold2));
+    box-shadow:0 6px 0 #C79200,0 14px 22px rgba(0,0,0,.2);
+  }
+  .btn3d.gold:active{box-shadow:0 1px 0 #C79200,0 4px 8px rgba(0,0,0,.2)}
+  .btn3d svg{width:24px;height:24px;flex:none}
+  .center{text-align:center}
+  .hero-cta{margin:18px 0 4px}
+  .free{font-size:13.5px;font-weight:700;opacity:.75;margin-top:12px;text-align:center}
+
+  /* ---------- Banner carousel ---------- */
+  .banner-wrap{
+    margin-top:22px;border-radius:28px;overflow:hidden;position:relative;
+    box-shadow:0 14px 26px rgba(15,91,52,.35);
+    border:1.5px solid rgba(255,255,255,.25);
+  }
+  .slides{display:flex;transition:transform .55s cubic-bezier(.22,.8,.3,1);direction:ltr}
+  .slide{
+    min-width:100%;height:172px;padding:16px 20px;direction:rtl;
+    display:flex;align-items:center;gap:8px;position:relative;overflow:hidden;color:#fff;
+  }
+  .slide.s1{background:linear-gradient(225deg,#26A04B,var(--deep))}
+  .slide.s2{background:linear-gradient(225deg,#FF6B5E,#B5262A)}
+  .slide.s3{background:linear-gradient(225deg,#3DAE4E,#14703A)}
+  .slide::after{
+    content:"";position:absolute;left:-24px;bottom:-40px;width:150px;height:150px;border-radius:50%;
+    background:radial-gradient(circle,rgba(255,198,26,.38),transparent 70%);
+  }
+  .slide .txt{flex:1;z-index:1}
+  .slide h3{font-size:22px;line-height:1.2;font-weight:900}
+  .slide p{font-size:13.5px;font-weight:600;opacity:.93;margin:6px 0 12px}
+  .pill{
+    display:inline-flex;align-items:center;gap:4px;background:#fff;color:var(--deep);
+    font-weight:900;font-size:14px;padding:8px 16px;border-radius:22px;
+    box-shadow:0 3px 0 #CFE8D5,0 8px 12px rgba(0,0,0,.2);
+  }
+  .art{font-size:70px;z-index:1;filter:drop-shadow(0 8px 8px rgba(0,0,0,.3));animation:float 3.6s ease-in-out infinite}
+  .dots{display:flex;justify-content:center;gap:6px;margin-top:10px}
+  .dots i{width:6px;height:6px;border-radius:3px;background:rgba(27,122,62,.25);transition:all .25s}
+  .dots i.on{width:20px;background:var(--green)}
+
+  /* ---------- Section title ---------- */
+  .sec{font-size:20px;font-weight:900;margin:28px 4px 12px;color:var(--deep);display:flex;align-items:center;gap:8px}
+  .sec::before{content:"";width:6px;height:22px;border-radius:4px;background:var(--gold2)}
+
+  /* ---------- Tools grid (كروت 3D) ---------- */
+  .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px 10px}
+  .tile{
+    --c:#4F46E5;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;
+    text-align:center;padding:10px 4px 9px;border-radius:22px;
+    background:linear-gradient(180deg,color-mix(in srgb,var(--c) 8%,#fff),color-mix(in srgb,var(--c) 20%,#fff));
+    border:1px solid color-mix(in srgb,var(--c) 18%,transparent);
+    box-shadow:0 5px 0 color-mix(in srgb,var(--c) 45%,#fff),0 10px 14px rgba(0,0,0,.08);
+    font-size:11.5px;font-weight:800;line-height:1.25;min-height:100px;
+    transition:transform .09s, box-shadow .09s;
+  }
+  .tile:active{transform:translateY(4px);box-shadow:0 1px 0 color-mix(in srgb,var(--c) 45%,#fff),0 3px 6px rgba(0,0,0,.08)}
+  .ico{
+    width:42px;height:42px;border-radius:14px;display:grid;place-items:center;font-size:23px;
+    background:linear-gradient(180deg,color-mix(in srgb,var(--c) 72%,#fff),var(--c));
+    box-shadow:0 3px 0 color-mix(in srgb,var(--c) 75%,#000),0 6px 8px color-mix(in srgb,var(--c) 30%,transparent);
+  }
+  .tile.all{
+    grid-column:span 2;align-items:flex-start;justify-content:center;padding:14px;text-align:right;
+    background:linear-gradient(180deg,#FF6B5E,var(--flame));color:#fff;border:0;
+    box-shadow:0 5px 0 #A8222A,0 10px 14px rgba(0,0,0,.14);position:relative;font-size:17px;
+  }
+  .tile.all:active{box-shadow:0 1px 0 #A8222A}
+  .tile.all small{font-size:11.5px;font-weight:700;opacity:.92;display:block;margin-top:3px}
+  .tile.all .sp{position:absolute;top:8px;inset-inline-end:12px;font-size:20px}
+
+  /* ---------- Features ---------- */
+  .feats{display:grid;gap:12px}
+  .feat{
+    background:#fff;border-radius:22px;padding:14px;display:flex;gap:14px;align-items:center;
+    border:1px solid rgba(0,0,0,.06);box-shadow:0 5px 0 rgba(0,0,0,.05),0 10px 16px rgba(0,0,0,.06);
+  }
+  .feat b{display:block;font-size:16px;font-weight:900}
+  .feat span{font-size:13px;font-weight:600;color:#5b6a60}
+
+  /* ---------- الأرضية الخضرا + CTA ---------- */
+  .ground{
+    margin:36px -16px 0;padding:34px 20px 28px;text-align:center;color:#fff;
+    border-radius:50% 50% 0 0 / 46px 46px 0 0;
+    background:linear-gradient(180deg,#8CC84B,#1E8A3F);
+  }
+  .ground h2{font-size:26px;font-weight:900;line-height:1.3;text-shadow:0 2px 0 rgba(0,0,0,.15)}
+  .ground p{font-weight:700;margin:6px 0 18px;opacity:.95}
+  footer{font-size:12.5px;font-weight:600;padding:16px 0 0;opacity:.9}
+
+  /* ---------- Sticky bar (موبايل) ---------- */
+  .sticky{
+    position:fixed;inset-inline:0;bottom:0;z-index:20;
+    padding:10px 14px calc(10px + env(safe-area-inset-bottom));
+    background:rgba(255,248,220,.94);backdrop-filter:blur(8px);
+    box-shadow:0 -8px 20px rgba(0,0,0,.1);
+  }
+  .sticky .btn3d{width:100%;max-width:520px;margin:0 auto;display:flex;padding:12px 20px;font-size:19px}
+
+  @media (min-width:700px){ .page{max-width:560px} }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- Header -->
+  <header class="header">
+    <img class="mascot" src="afreet_mascot.png" alt="عفريت"
+         onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'mascot',style:'font-size:96px;line-height:150px',textContent:'👻'}))">
+    <h1>عفريت</h1>
+    <div class="underline"></div>
+    <div class="welcome">يخلصهالك 👋</div>
+    <div class="sub">كل أدواتك في مكان واحد</div>
+    <div class="gold-line"></div>
+  </header>
+
+  <div class="center hero-cta">
+    <a class="btn3d" href="https://play.google.com/store/apps/details?id=com.afreet.toolbox" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3.6 2.3a1.6 1.6 0 0 0-.6 1.3v16.8c0 .5.2 1 .6 1.3l9.2-9.7zM14 13.4l2.7 2.8-11.4 6.3zM14 10.6 5.3 1.5l11.4 6.3zM18.4 9.3l2.6 1.5a1.4 1.4 0 0 1 0 2.4l-2.6 1.5-3.1-3.2z"/></svg>
+      حمّل من Google Play
+    </a>
+  </div>
+  <p class="free">مجاني • للأندرويد</p>
+
+  <!-- Banner -->
+  <section class="banner-wrap" id="banner" aria-label="مميزات عفريت">
+    <div class="slides" id="slides">
+      <a class="slide s1" href="https://play.google.com/store/apps/details?id=com.afreet.toolbox">
+        <div class="txt"><h3>كاشف الأرقام</h3><p>اعرف مين بيتصل بيك قبل ما ترد</p><span class="pill">حمّل الآن ‹</span></div>
+        <div class="art">📱</div>
+      </a>
+      <a class="slide s2" href="https://play.google.com/store/apps/details?id=com.afreet.toolbox">
+        <div class="txt"><h3>حماية المكالمات</h3><p>خليك في الأمان من النصابين والمكالمات المزعجة</p><span class="pill">فعّل الحماية ‹</span></div>
+        <div class="art">🛡️</div>
+      </a>
+      <a class="slide s3" href="https://play.google.com/store/apps/details?id=com.afreet.toolbox">
+        <div class="txt"><h3>اكتشف المزيد من الأدوات</h3><p>أدوات ذكية .. لحياة أسهل</p><span class="pill">استكشف الآن ‹</span></div>
+        <div class="art">🧰</div>
+      </a>
+    </div>
+  </section>
+  <div class="dots" id="dots"><i class="on"></i><i></i><i></i></div>
+
+  <!-- Tools -->
+  <h2 class="sec">أدوات عفريت</h2>
+  <div class="grid">
+    <a class="tile" style="--c:#0D9488" href="#dl"><div class="ico">🔍</div>كاشف الأرقام</a>
+    <a class="tile" style="--c:#4F46E5" href="#dl"><div class="ico">📷</div>مسح QR</a>
+    <a class="tile" style="--c:#F59E0B" href="#dl"><div class="ico">🧮</div>الحاسبة</a>
+    <a class="tile" style="--c:#0891B2" href="#dl"><div class="ico">💱</div>محول العملات</a>
+
+    <a class="tile" style="--c:#0F9F83" href="#dl"><div class="ico">🕌</div>مواعيد الصلاة</a>
+    <a class="tile" style="--c:#B8860B" href="#dl"><div class="ico">🧭</div>القبلة</a>
+    <a class="tile" style="--c:#B45309" href="#dl"><div class="ico">📄</div>سكانر المستندات</a>
+    <a class="tile" style="--c:#16A34A" href="#dl"><div class="ico">⚡</div>سرعة النت</a>
+
+    <a class="tile" style="--c:#F97316" href="#dl"><div class="ico">📈</div>أسعار الدهب والدولار</a>
+    <a class="tile" style="--c:#0EA5E9" href="#dl"><div class="ico">🕘</div>سجل المكالمات</a>
+    <a class="tile all" href="#dl"><span class="sp">✨</span>كل الأدوات<small>+40 أداة جاهزة</small></a>
+  </div>
+
+  <!-- Features -->
+  <h2 class="sec">ليه عفريت؟</h2>
+  <div class="feats">
+    <div class="feat"><div class="ico" style="--c:#0D9488;width:46px;height:46px">📞</div><div><b>اعرف التصنيف والاسم</b><span>شوف مين بيتصل حتى لو الرقم مش متسجل عندك</span></div></div>
+    <div class="feat"><div class="ico" style="--c:#E5383B;width:46px;height:46px">🛡️</div><div><b>حماية من النصابين</b><span>تنبيه للأرقام اللي احتمال تكون سبام</span></div></div>
+    <div class="feat"><div class="ico" style="--c:#7C3AED;width:46px;height:46px">🧰</div><div><b>أدوات كتير في تطبيق واحد</b><span>من الحاسبات والـ QR للسكانر والأذكار وغيرها</span></div></div>
+    <div class="feat"><div class="ico" style="--c:#16A34A;width:46px;height:46px">🔒</div><div><b>حماية أكبر لخصوصيتك</b><span>تحكم أكتر في مين يوصلك</span></div></div>
+  </div>
+
+  <!-- Bottom CTA -->
+  <section class="ground" id="dl">
+    <h2>جاهز تخلّي عفريت<br>يخلصهالك؟</h2>
+    <p>حمّله دلوقتي ببلاش</p>
+    <a class="btn3d gold" href="https://play.google.com/store/apps/details?id=com.afreet.toolbox" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3.6 2.3a1.6 1.6 0 0 0-.6 1.3v16.8c0 .5.2 1 .6 1.3l9.2-9.7zM14 13.4l2.7 2.8-11.4 6.3zM14 10.6 5.3 1.5l11.4 6.3zM18.4 9.3l2.6 1.5a1.4 1.4 0 0 1 0 2.4l-2.6 1.5-3.1-3.2z"/></svg>
+      حمّل التطبيق الآن
+    </a>
+    <footer>© عفريت</footer>
+  </section>
+</div>
+
+<div class="sticky">
+  <a class="btn3d" href="https://play.google.com/store/apps/details?id=com.afreet.toolbox" rel="noopener">حمّل التطبيق الآن</a>
+</div>
+
+<script>
+  // كاروسيل تلقائي كل 5 ثواني (زي التطبيق)
+  (function(){
+    var s=document.getElementById('slides'), d=document.querySelectorAll('#dots i'), i=0;
+    setInterval(function(){
+      i=(i+1)%3;
+      s.style.transform='translateX(-'+(i*100)+'%)'; /* الاتجاه LTR داخلياً */
+      d.forEach(function(x,k){x.classList.toggle('on',k===i)});
+    },5000);
+  })();
+</script>
+</body>
+</html>
